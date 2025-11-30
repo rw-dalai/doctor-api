@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class AppointmentContextTests {
@@ -101,8 +101,8 @@ class AppointmentContextTests {
 
         // Then
         var appointmentRetrieved = appointmentRepository.findById(appointment.getId()).orElseThrow();
-        // assertNotNull(loaded.getCurrentState());
-        // assertInstanceOf(ConfirmedAppointmentState.class, loaded.getCurrentState());
+        // assertNotNull(appointmentRetrieved.getCurrentState());
+        // assertInstanceOf(ConfirmedAppointmentState.class, appointmentRetrieved.getCurrentState());
     }
 
 
