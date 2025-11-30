@@ -40,8 +40,8 @@ class AppointmentContextTests {
             new PhoneNumber("06601234567"));
 
         // When
-        patientRepository.save(patient);
-        entityManager.clear();
+        patientRepository.save(patient); // DB sets Id, JPA sets Id in our patient.
+        entityManager.clear(); // Clears cache to force 'findById' from DB.
 
         // Then
         var patientRetrieved = patientRepository.findById(patient.getId()).orElseThrow();
