@@ -66,28 +66,25 @@ class AppointmentContextTests {
         var patient = new Patient(
             "David", "Cameron",
             new InsuranceNumber("1234567890"),
-            new PhoneNumber("06601234567")
-        );
+            new PhoneNumber("06601234567"));
 
         var doctor = new Doctor(
-            "Ana", "Palastanga", "doc@example.com");
+            "Ana", "Palastanga", "ana@example.com");
 
 
         // Life Cycle Chef (Parent)
         var appointment = new Appointment(
             LocalDate.of(2025, 11, 26),
             LocalDateTime.of(2025, 11, 26, 0, 0, 0),
-            patient
-        );
+            patient);
 
         // Child
         var appointmentState = new ConfirmedAppointmentState(
             appointment,
             LocalDateTime.of(2025, 11, 25, 12, 0, 0),
             doctor,
-             new TimeSlot(LocalTime.of(10, 0), LocalTime.of(10, 30)),
-            "Info Text"
-        );
+            new TimeSlot(LocalTime.of(10, 0), LocalTime.of(10, 30)),
+            "Info Text");
 
         // Life Cycle Chef (Parent) sets Child
         appointment.setCurrentState(appointmentState);
@@ -101,7 +98,6 @@ class AppointmentContextTests {
 
         // Then
         var appointmentRetrieved = appointmentRepository.findById(appointment.getId()).orElseThrow();
-        // assertNotNull(appointmentRetrieved.getCurrentState());
         // assertInstanceOf(ConfirmedAppointmentState.class, appointmentRetrieved.getCurrentState());
     }
 
