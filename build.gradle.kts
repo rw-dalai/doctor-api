@@ -25,15 +25,33 @@ repositories {
 }
 
 dependencies {
+
+    // JPA
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.boot:spring-boot-starter-webmvc")
-    compileOnly("org.projectlombok:lombok")
-    runtimeOnly("com.h2database:h2")
-    annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-data-jpa-test")
+
+    // Bean Validation
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     testImplementation("org.springframework.boot:spring-boot-starter-validation-test")
+
+    // Web
+    implementation("org.springframework.boot:spring-boot-starter-webmvc")
     testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
+
+    // Lombok
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+
+    // H2 Database
+    // runtimeOnly("com.h2database:h2")
+
+    // https://github.com/h2database/h2database/issues/4291
+    // Downgrade to avoid issues with latest H2 version
+    runtimeOnly("com.h2database:h2:2.2.224")
+
+    implementation("org.springframework.boot:spring-boot-h2console")
+
+    // Testing
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

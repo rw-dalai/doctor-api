@@ -1,4 +1,9 @@
 package at.spengergasse.doctor.persistence;
 
-public interface PatientRepository {
+import at.spengergasse.doctor.models.patients.Patient;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PatientRepository extends JpaRepository<Patient, Long> {
 }
