@@ -5,12 +5,14 @@ import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.math.BigDecimal;
 import java.time.LocalTime;
 
-// C#           Java                SQL
-// DateOnly     -> LocalDate        -> SQL DATE
-// TimeOnly     -> LocalTime        -> SQL TIME
-// DateTime     -> LocalDateTime    -> SQL TIMESTAMP
+// C#           Java                SQL                 Example
+// DateOnly     -> LocalDate        -> SQL DATE         LocalDate.of(2023, 6, 15)
+// TimeOnly     -> LocalTime        -> SQL TIME         LocalTime.of(14, 30)
+// DateTime     -> LocalDateTime    -> SQL TIMESTAMP    LocalDateTime.of(2023, 6, 15, 14, 30)
+// decimal      -> BigDecimal       -> SQL DECIMAL      new BigDecimal("19.99") or BigDecimal.valueOf(19.99)
 
 // Lombok
 @Getter
