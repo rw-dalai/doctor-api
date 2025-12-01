@@ -26,7 +26,7 @@ public class GradingTests {
     }
 
     @Test
-    void T00_canCreateDatabaseTest() {
+    void T00_CanCreateDatabaseTest() {
         Integer count = jdbc.queryForObject(
             "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'PUBLIC'", Integer.class);
 
@@ -37,35 +37,39 @@ public class GradingTests {
     }
 
     @Test
-    void T01_insertDoctorTest() {
+    void T00_SchemaTest() {
+        insertOk(
+            "INSERT INTO doctor (firstname, lastname, email) VALUES ('first', 'last', 'x@y.at')",
+            "INSERT INTO patient (firstname, lastname, insurance_number, mobile) VALUES ('first', 'last', '1234567890', NULL)",
+            "INSERT INTO appointment (date, created, patient_id) VALUES ('2025-12-02', '2025-11-24T13:00:00', 1)",
+            "INSERT INTO appointment_state (appointment_id, created, type, doctor_id, start_time, end_time, infotext)" +
+                "VALUES (1, '2025-11-24T13:00:00', 'Confirmed', 1, '13:00:00', '14:00:00', null)"
+        );
+    }
+
+    @Test
+    void T01_InsertDoctorTest() {
         insertOk(
             "INSERT INTO doctor (firstname, lastname, email) VALUES ('first', 'last', 'x@y.at')"
         );
     }
 
     @Test
-    void T02_insertPatientTest() {
+    void T02_InsertPatientTest() {
         insertOk(
             "INSERT INTO patient (firstname, lastname, insurance_number, mobile) VALUES ('first', 'last', '1234567890', NULL)"
         );
     }
 
     @Test
-    void T03_insertAppointmentTest() {
+    void T03_InsertAppointmentTest() {
         insertOk(
             "INSERT INTO appointment (date, created, patient_id) VALUES ('2025-12-02', '2025-11-24T13:00:00', 1)"
         );
     }
 
     @Test
-    void T04_insertAppointmentStateTest() {
-        insertOk(
-            "INSERT INTO appointment (date, created, patient_id) VALUES ('2025-12-02', '2025-11-24T13:00:00', 1)"
-        );
-    }
-
-    @Test
-    void T05_insertConfirmedAppointmentStateTest() {
+    void T04_InsertConfirmedAppointmentStateTest() {
         insertOk(
             "INSERT INTO appointment_state (appointment_id, created, type, doctor_id, start_time, end_time, infotext) " +
                 "VALUES (1, '2025-11-24T13:00:00', 'Confirmed', 1, '13:00:00', '14:00:00', null)"
@@ -73,7 +77,7 @@ public class GradingTests {
     }
 
     @Test
-    void T06_insertCancelledAppointmentStateTest() {
+    void T05_InsertCancelledAppointmentStateTest() {
         insertOk(
             "INSERT INTO appointment_state (appointment_id, created, type, doctor_id, start_time, end_time, infotext) " +
                 "VALUES (1, '2025-11-24T13:00:00', 'Cancelled', null, null, null, null)"
@@ -81,7 +85,7 @@ public class GradingTests {
     }
 
     @Test
-    void T07_doctorEmailIsUniqueTest() {
+    void T06_DoctorEmailIsUniqueTest() {
         insertOk(
             "INSERT INTO doctor (firstname, lastname, email) VALUES ('first', 'last', 'x@y.at')");
 
@@ -92,7 +96,7 @@ public class GradingTests {
     }
 
     @Test
-    void T08_appointmentDateAndPatientIsUniqueTest() {
+    void T07_AppointmentDateAndPatientIsUniqueTest() {
         insertOk(
             "INSERT INTO appointment (date, created, patient_id) VALUES ('2025-12-02', '2025-11-24T13:00:00', 1)"
         );
