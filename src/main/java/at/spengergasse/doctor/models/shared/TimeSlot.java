@@ -24,10 +24,12 @@ import java.time.LocalTime;
 @Embeddable
 public class TimeSlot {
 
-    @Column(name = "start_time", nullable = false)
+    // Must be Nullable columns, because TimeSlot is used in ConfirmedAppointmentState
+    @Column(name = "start_time", nullable = true)
     private LocalTime start;
 
-    @Column(name = "end_time", nullable = false)
+    // Must be Nullable columns, because TimeSlot is used in ConfirmedAppointmentState
+    @Column(name = "end_time", nullable = true)
     private LocalTime end;
 
     // JPA Ctor

@@ -21,17 +21,19 @@ import java.time.LocalDateTime;
 @DiscriminatorValue("Confirmed")
 public class ConfirmedAppointmentState extends AppointmentState {
 
+    // Must be Nullable column, because of Single Table Inheritance Strategy
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "doctor_id", nullable = false)
+    @JoinColumn(name = "doctor_id", nullable = true)
     private Doctor doctor;
 
+    // Must be Nullable column, because of Single Table Inheritance Strategy
     // Embedded Value Object
     // (-> has start_time, end_time in the table structure !)
     @Embedded
     private TimeSlot plannedSlot;
 
-    // Nullable column
-     @Column
+    // Must be Nullable column, because of Single Table Inheritance Strategy
+     @Column(nullable = true)
     private String infotext;
 
     // JPA Ctor
