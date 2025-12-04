@@ -40,8 +40,8 @@ public abstract class AppointmentState extends BaseEntity {
 
     // Owner Side / FK-Side (Foreign Key Side)
     // (-> has apppointment_id in the table structure !)
-    @OneToOne(fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "appointment_id", nullable = true, unique = true)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "appointment_id", nullable = false, unique = true)
     private Appointment appointment;
 
     @Column(nullable = false)
